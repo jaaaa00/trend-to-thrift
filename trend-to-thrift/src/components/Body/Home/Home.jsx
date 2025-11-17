@@ -17,7 +17,7 @@ const Home = ({ onCartUpdate, cart = [], showLoginPopup, setShowLoginPopup }) =>
     {
       id: 1,
       name: 'Summer Casual Look',
-      price: 45.99,
+      price: 799,
       image: Model1,
       description: 'High quality outfit from our sustainable collection. Perfect for summer days.',
       size: 'M'
@@ -25,7 +25,7 @@ const Home = ({ onCartUpdate, cart = [], showLoginPopup, setShowLoginPopup }) =>
     {
       id: 2,
       name: 'Urban Street Style',
-      price: 52.99,
+      price: 799,
       image: Model2,
       description: 'High quality outfit from our sustainable collection. Modern urban style.',
       size: 'M'
@@ -33,7 +33,7 @@ const Home = ({ onCartUpdate, cart = [], showLoginPopup, setShowLoginPopup }) =>
     {
       id: 3,
       name: 'Classic Elegance',
-      price: 48.99,
+      price: 799,
       image: Model3,
       description: 'High quality outfit from our sustainable collection. Timeless elegance.',
       size: 'M'
@@ -44,7 +44,7 @@ const Home = ({ onCartUpdate, cart = [], showLoginPopup, setShowLoginPopup }) =>
     {
       id: 1,
       name: 'Classic White Tee',
-      price: 15.99,
+      price: 799,
       image: Shirt1,
       description: 'High quality shirt from our sustainable collection. Essential wardrobe piece.',
       size: 'M'
@@ -52,7 +52,7 @@ const Home = ({ onCartUpdate, cart = [], showLoginPopup, setShowLoginPopup }) =>
     {
       id: 2,
       name: 'Vintage Denim Shirt',
-      price: 24.99,
+      price: 799,
       image: Shirt2,
       description: 'High quality shirt from our sustainable collection. Vintage denim style.',
       size: 'M'
@@ -60,7 +60,7 @@ const Home = ({ onCartUpdate, cart = [], showLoginPopup, setShowLoginPopup }) =>
     {
       id: 3,
       name: 'Striped Cotton Shirt',
-      price: 19.99,
+      price: 799,
       image: Shirt3,
       description: 'High quality shirt from our sustainable collection. Classic striped pattern.',
       size: 'M'
@@ -68,19 +68,19 @@ const Home = ({ onCartUpdate, cart = [], showLoginPopup, setShowLoginPopup }) =>
   ];
 
   const handleCardClick = (item, type) => {
-  setSelectedItem({ ...item, type });
-  setSelectedSize('M'); // Reset to default size
-};
+    setSelectedItem({ ...item, type });
+    setSelectedSize('M');
+  };
 
-const handleAddToCart = () => {
-  if (selectedItem) {
-    const newCart = [...cart, { ...selectedItem, size: selectedSize, cartId: Date.now() }];
-    if (onCartUpdate) {
-      onCartUpdate(newCart);
+  const handleAddToCart = () => {
+    if (selectedItem) {
+      const newCart = [...cart, { ...selectedItem, size: selectedSize, cartId: Date.now() }];
+      if (onCartUpdate) {
+        onCartUpdate(newCart);
+      }
+      setSelectedItem(null);
     }
-    setSelectedItem(null);
-  }
-};
+  };
 
   const filteredModels = models.filter(model =>
     model.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -111,40 +111,44 @@ const handleAddToCart = () => {
         </div>
 
         {/* Trend-to-Thrift Matches Section */}
-        <div className="section">
-          <h2 className="section-title">Trend-to-Thrift Matches</h2>
-          <div className="shirts-grid">
-            {filteredModels.map(model => (
-              <div key={model.id} className="shirt-card" onClick={() => handleCardClick(model, 'model')}>
-                <div className="shirt-image-container">
-                  <img src={model.image} alt={model.name} className="shirt-image" />
+        {filteredModels.length > 0 && (
+          <div className="section">
+            <h2 className="section-title">Trend-to-Thrift Matches</h2>
+            <div className="shirts-grid">
+              {filteredModels.map(model => (
+                <div key={model.id} className="shirt-card" onClick={() => handleCardClick(model, 'model')}>
+                  <div className="shirt-image-container">
+                    <img src={model.image} alt={model.name} className="shirt-image" />
+                  </div>
+                  <div className="shirt-info">
+                    <h3 className="shirt-name">{model.name}</h3>
+                    <p className="shirt-price">₱{model.price}</p>
+                  </div>
                 </div>
-                <div className="shirt-info">
-                  <h3 className="shirt-name">{model.name}</h3>
-                  <p className="shirt-price">${model.price}</p>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Shop Sustainable Fashion Section */}
-        <div className="section">
-          <h2 className="section-title">Shop Sustainable Fashion</h2>
-          <div className="shirts-grid">
-            {filteredShirts.map(shirt => (
-              <div key={shirt.id} className="shirt-card" onClick={() => handleCardClick(shirt, 'shirt')}>
-                <div className="shirt-image-container">
-                  <img src={shirt.image} alt={shirt.name} className="shirt-image" />
+        {filteredShirts.length > 0 && (
+          <div className="section">
+            <h2 className="section-title">Shop Sustainable Fashion</h2>
+            <div className="shirts-grid">
+              {filteredShirts.map(shirt => (
+                <div key={shirt.id} className="shirt-card" onClick={() => handleCardClick(shirt, 'shirt')}>
+                  <div className="shirt-image-container">
+                    <img src={shirt.image} alt={shirt.name} className="shirt-image" />
+                  </div>
+                  <div className="shirt-info">
+                    <h3 className="shirt-name">{shirt.name}</h3>
+                    <p className="shirt-price">₱{shirt.price}</p>
+                  </div>
                 </div>
-                <div className="shirt-info">
-                  <h3 className="shirt-name">{shirt.name}</h3>
-                  <p className="shirt-price">${shirt.price}</p>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Product Modal */}
         {selectedItem && (
@@ -152,22 +156,22 @@ const handleAddToCart = () => {
             <div className="modal-content" onClick={(e) => e.stopPropagation()}>
               <img src={selectedItem.image} alt={selectedItem.name} className="modal-image" />
               <h2>{selectedItem.name}</h2>
-              <p className="modal-price">${selectedItem.price}</p>
+              <p className="modal-price">₱{selectedItem.price}</p>
               <p className="modal-description">{selectedItem.description}</p>
-             <div className="modal-size-container">
-  <label>Size:</label>
-  <div className="size-options">
-    {['XS', 'S', 'M', 'L', 'XL', 'XXL'].map(size => (
-      <button
-        key={size}
-        className={`size-button ${selectedSize === size ? 'size-button-active' : ''}`}
-        onClick={() => setSelectedSize(size)}
-      >
-        {size}
-      </button>
-    ))}
-  </div>
-</div>
+              <div className="modal-size-container">
+                <label>Size:</label>
+                <div className="size-options">
+                  {['XS', 'S', 'M', 'L', 'XL', 'XXL'].map(size => (
+                    <button
+                      key={size}
+                      className={`size-button ₱{selectedSize === size ? 'size-button-active' : ''}`}
+                      onClick={() => setSelectedSize(size)}
+                    >
+                      {size}
+                    </button>
+                  ))}
+                </div>
+              </div>
               <button className="add-to-cart-btn" onClick={handleAddToCart}>Add to Cart</button>
             </div>
           </div>
