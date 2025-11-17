@@ -16,24 +16,24 @@ const Home = ({ onCartUpdate, cart = [], showLoginPopup, setShowLoginPopup }) =>
   const models = [
     {
       id: 1,
-      name: 'Summer Casual Look',
-      price: 799,
+      name: 'ACNE STUDIOS LOGO TEE RELAXED FIT',
+      price: 23000,
       image: Model1,
       description: 'High quality outfit from our sustainable collection. Perfect for summer days.',
       size: 'M'
     },
     {
       id: 2,
-      name: 'Urban Street Style',
-      price: 799,
+      name: 'FEAR OF GOD ESSENTIALS Back Logo T-Shirt',
+      price: 4784,
       image: Model2,
       description: 'High quality outfit from our sustainable collection. Modern urban style.',
       size: 'M'
     },
     {
       id: 3,
-      name: 'Classic Elegance',
-      price: 799,
+      name: 'Human Made Heart-Motif Cotton T-shirt',
+      price: 6189,
       image: Model3,
       description: 'High quality outfit from our sustainable collection. Timeless elegance.',
       size: 'M'
@@ -43,24 +43,24 @@ const Home = ({ onCartUpdate, cart = [], showLoginPopup, setShowLoginPopup }) =>
   const shirts = [
     {
       id: 1,
-      name: 'Classic White Tee',
-      price: 799,
+      name: 'Prettiest® ‘CREATIVE DEPT’ CLASSIC TEE (CHARCOAL)',
+      price: 899,
       image: Shirt1,
       description: 'High quality shirt from our sustainable collection. Essential wardrobe piece.',
       size: 'M'
     },
     {
       id: 2,
-      name: 'Vintage Denim Shirt',
-      price: 799,
+      name: 'THE HUSTLE CLUB- LOGO TEES REGULAR DROP SHOULDER',
+      price: 850,
       image: Shirt2,
       description: 'High quality shirt from our sustainable collection. Vintage denim style.',
       size: 'M'
     },
     {
       id: 3,
-      name: 'Striped Cotton Shirt',
-      price: 799,
+      name: 'THE HUSTLE CLUB- HEART OF THE HUSTLE COLLECTION',
+      price: 899,
       image: Shirt3,
       description: 'High quality shirt from our sustainable collection. Classic striped pattern.',
       size: 'M'
@@ -113,7 +113,7 @@ const Home = ({ onCartUpdate, cart = [], showLoginPopup, setShowLoginPopup }) =>
         {/* Trend-to-Thrift Matches Section */}
         {filteredModels.length > 0 && (
           <div className="section">
-            <h2 className="section-title">Trend-to-Thrift Matches</h2>
+            <h2 className="section-title">Current Trends</h2>
             <div className="shirts-grid">
               {filteredModels.map(model => (
                 <div key={model.id} className="shirt-card" onClick={() => handleCardClick(model, 'model')}>
@@ -133,7 +133,7 @@ const Home = ({ onCartUpdate, cart = [], showLoginPopup, setShowLoginPopup }) =>
         {/* Shop Sustainable Fashion Section */}
         {filteredShirts.length > 0 && (
           <div className="section">
-            <h2 className="section-title">Shop Sustainable Fashion</h2>
+            <h2 className="section-title">Trend to Thrift Matches</h2>
             <div className="shirts-grid">
               {filteredShirts.map(shirt => (
                 <div key={shirt.id} className="shirt-card" onClick={() => handleCardClick(shirt, 'shirt')}>
