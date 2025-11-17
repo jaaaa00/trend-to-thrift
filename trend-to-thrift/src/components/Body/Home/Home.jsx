@@ -164,7 +164,7 @@ const Home = ({ onCartUpdate, cart = [], showLoginPopup, setShowLoginPopup }) =>
                   {['XS', 'S', 'M', 'L', 'XL', 'XXL'].map(size => (
                     <button
                       key={size}
-                      className={`size-button ₱{selectedSize === size ? 'size-button-active' : ''}`}
+                      className={`size-button ${selectedSize === size ? 'size-button-active' : ''}`}
                       onClick={() => setSelectedSize(size)}
                     >
                       {size}
