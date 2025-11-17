@@ -307,3 +307,15 @@
   }
 }
 
+.product-link {
+  color: #043915;
+  text-decoration: underline;
+  word-break: break-all;
+  display: block;
+  margin-top: 0.5rem;
+}
+
+.product-link:hover {
+  color: #065a23;
+  text-decoration: none;
+}

@@ -123,7 +123,7 @@ const handleRemoveItem = (index, e) => {
            <div className="cart-item-details">
   <p>{item.name}</p>
   <p className="cart-item-size">Size: {item.size}</p>
-  <p>${item.price}</p>
+  <p>₱{item.price}</p>
 </div>
           <Trash2 
   size={18} 
@@ -133,7 +133,7 @@ const handleRemoveItem = (index, e) => {
           </div>
         ))}
         <div className="cart-total">
-          <strong>Total: ${cart.reduce((sum, item) => sum + item.price, 0).toFixed(2)}</strong>
+          <strong>Total: ₱{cart.reduce((sum, item) => sum + item.price, 0).toFixed(2)}</strong>
         </div>
         <button className="checkout-btn">Proceed to Checkout</button>
       </>

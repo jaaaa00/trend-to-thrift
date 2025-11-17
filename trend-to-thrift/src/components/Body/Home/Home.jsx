@@ -19,7 +19,7 @@ const Home = ({ onCartUpdate, cart = [], showLoginPopup, setShowLoginPopup }) =>
       name: 'ACNE STUDIOS LOGO TEE RELAXED FIT',
       price: 23000,
       image: Model1,
-      description: 'High quality outfit from our sustainable collection. Perfect for summer days.',
+      description: 'https://www.acnestudios.com/us/en/logo-t-shirt---relaxed-fit-faded-black/CL0196-BM0.html?g=man',
       size: 'M'
     },
     {
@@ -27,15 +27,15 @@ const Home = ({ onCartUpdate, cart = [], showLoginPopup, setShowLoginPopup }) =>
       name: 'FEAR OF GOD ESSENTIALS Back Logo T-Shirt',
       price: 4784,
       image: Model2,
-      description: 'High quality outfit from our sustainable collection. Modern urban style.',
+      description: 'https://www.flannels.com/fear-of-god-essentials-back-logo-t-shirt-583625#colcode=58362503',
       size: 'M'
     },
     {
       id: 3,
-      name: 'Human Made Heart-Motif Cotton T-shirt',
+      name: 'Human Made Heart-Motif Cotton T-Shirt',
       price: 6189,
       image: Model3,
-      description: 'High quality outfit from our sustainable collection. Timeless elegance.',
+      description: 'https://www.farfetch.com/ph/shopping/men/human-made-heart-motif-cotton-t-shirt-item-31025085.aspx',
       size: 'M'
     }
   ];
@@ -46,7 +46,7 @@ const Home = ({ onCartUpdate, cart = [], showLoginPopup, setShowLoginPopup }) =>
       name: 'Prettiest® ‘CREATIVE DEPT’ CLASSIC TEE (CHARCOAL)',
       price: 899,
       image: Shirt1,
-      description: 'High quality shirt from our sustainable collection. Essential wardrobe piece.',
+      description: 'https://shopee.ph/Prettiest%C2%AE-%E2%80%98CREATIVE-DEPT%E2%80%99-CLASSIC-TEE-(CHARCOAL)-i.325187478.42853546846?extraParams=%7B%22display_model_id%22%3A275300706062%7D',
       size: 'M'
     },
     {
@@ -54,7 +54,7 @@ const Home = ({ onCartUpdate, cart = [], showLoginPopup, setShowLoginPopup }) =>
       name: 'THE HUSTLE CLUB- LOGO TEES REGULAR DROP SHOULDER',
       price: 850,
       image: Shirt2,
-      description: 'High quality shirt from our sustainable collection. Vintage denim style.',
+      description: 'https://shopee.ph/product/197875045/27121750644?d_id=b9ee3&uls_trackid=54797e7h0134&utm_content=zg1RtJZ4ge5885ZiPnu1AfswFBu',
       size: 'M'
     },
     {
@@ -62,7 +62,7 @@ const Home = ({ onCartUpdate, cart = [], showLoginPopup, setShowLoginPopup }) =>
       name: 'THE HUSTLE CLUB- HEART OF THE HUSTLE COLLECTION',
       price: 899,
       image: Shirt3,
-      description: 'High quality shirt from our sustainable collection. Classic striped pattern.',
+      description: 'https://shopee.ph/THE-HUSTLE-CLUB-HEART-OF-THE-HUSTLE-COLLECTION-OCTOBER-i.197875045.43372775489?extraParams=%7B%22display_model_id%22%3A266849887312%7D',
       size: 'M'
     }
   ];
@@ -157,7 +157,12 @@ const Home = ({ onCartUpdate, cart = [], showLoginPopup, setShowLoginPopup }) =>
               <img src={selectedItem.image} alt={selectedItem.name} className="modal-image" />
               <h2>{selectedItem.name}</h2>
               <p className="modal-price">₱{selectedItem.price}</p>
-              <p className="modal-description">{selectedItem.description}</p>
+              <div className="modal-description">
+  <p>Order it here:</p>
+  <a href={selectedItem.description} target="_blank" rel="noopener noreferrer" className="product-link">
+    {selectedItem.description}
+  </a>
+</div>
               <div className="modal-size-container">
                 <label>Size:</label>
                 <div className="size-options">
