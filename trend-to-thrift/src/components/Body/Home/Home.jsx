@@ -13,6 +13,9 @@ import Blog3 from '../../Thrift_Files/blog3.jpg';
 import Hoodie from '../../Thrift_Files/hoodie.jpg';
 import Sweatshirt from '../../Thrift_Files/sweatshirt.jpg';
 import Fullzip from '../../Thrift_Files/fullzip.jpg';
+import Thrift1 from '../../Thrift_Files/thrift1.jpg';
+import Thrift2 from '../../Thrift_Files/thrift2.jpg';
+import Thrift3 from '../../Thrift_Files/thrift3.jpg';
 
 const Home = ({ onCartUpdate, cart = [], showLoginPopup, setShowLoginPopup }) => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -73,6 +76,8 @@ const Home = ({ onCartUpdate, cart = [], showLoginPopup, setShowLoginPopup }) =>
     }
   ];
 
+
+  
   const handleCardClick = (item, type) => {
     setSelectedItem({ ...item, type });
     setSelectedSize('M');
@@ -171,6 +176,39 @@ const filteredNewProducts = newProducts.filter(product =>
   product.name.toLowerCase().includes(searchQuery.toLowerCase())
 );
 
+const thriftItems = [
+  {
+    id: 1,
+    name: '2000 Aerosmith x Sorayama C',
+    price: 300,
+    image: Thrift1,
+    description: 'Still amazed by the artwork on this piece. What makes it even more unusual is the Dodge logo on the back, marking Aerosmith\'s official tour sponsor that year.',
+    tags: ['Giant Tag', 'Insane Neckline', 'Few Pinholes', 'No Major Flaws', 'M (fits L)', '21.5x28'],
+    link: 'https://www.instagram.com/peculiarpicks.vtg?igsh=MWx6cmt2Y2d2dzN2bA=='
+  },
+  {
+    id: 2,
+    name: '1995 Van Halen "Balance" European Tour •',
+    price: 400,
+    image: Thrift2,
+    description: 'Tour merch from the Balance era marks both the peak and breaking point of Van Halen, one of rock\'s greatest bands.',
+    tags: ['Faded Euro Tag', 'XL', '23.5x29'],
+    link: 'https://www.instagram.com/peculiarpicks.vtg?igsh=MWx6cmt2Y2d2dzN2bA=='
+  },
+  {
+    id: 3,
+    name: '1991 Metallica Pushead •',
+    price: 350,
+    image: Thrift3,
+    description: '',
+    tags: ['Insane Fade', 'Insane Graphics', 'Metallica tag', 'Flawless', 'L-XL.', '23x29.5'],
+    link: 'https://www.instagram.com/peculiarpicks.vtg?igsh=MWx6cmt2Y2d2dzN2bA=='
+  }
+];
+
+const filteredThriftItems = thriftItems.filter(item =>
+  item.name.toLowerCase().includes(searchQuery.toLowerCase())
+);
 
   return (
   <div className="home">
@@ -294,6 +332,26 @@ const filteredNewProducts = newProducts.filter(product =>
   </div>
 )}
 
+{/* Thrift Store Section */}
+{filteredThriftItems.length > 0 && (
+  <div className="section">
+    <h2 className="section-title">Thrift Store Finds</h2>
+    <div className="thrift-store-grid">
+      {filteredThriftItems.map(item => (
+        <div key={item.id} className="thrift-store-card" onClick={() => handleCardClick(item, 'thrift')}>
+          <div className="thrift-store-image-container">
+            <img src={item.image} alt={item.name} className="thrift-store-image" />
+          </div>
+          <div className="thrift-store-info">
+            <h3 className="thrift-store-name">{item.name}</h3>
+            <p className="thrift-store-colors">₱{item.price}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+)}
+
         {/* Product Modal */}
 {selectedItem && (
   <div className="modal-overlay" onClick={() => setSelectedItem(null)}>
@@ -306,12 +364,31 @@ const filteredNewProducts = newProducts.filter(product =>
         <p className="modal-colors">{selectedItem.colors}</p>
       )}
       
-      <div className="modal-description">
-        <p>Order it here:</p>
-        <a href={selectedItem.description} target="_blank" rel="noopener noreferrer" className="product-link">
-          {selectedItem.description}
-        </a>
-      </div>
+     {selectedItem.type === 'thrift' ? (
+        <>
+          <div className="modal-description">
+            <p>{selectedItem.description}</p>
+          </div>
+          <div className="thrift-tags">
+            {selectedItem.tags.map((tag, index) => (
+              <span key={index} className="thrift-tag">{tag}</span>
+            ))}
+          </div>
+          <div className="modal-description">
+            <p>You can order it here:</p>
+            <a href={selectedItem.link} target="_blank" rel="noopener noreferrer" className="product-link">
+              {selectedItem.link}
+            </a>
+          </div>
+        </>
+      ) : (
+        <div className="modal-description">
+          <p>Order it here:</p>
+          <a href={selectedItem.description} target="_blank" rel="noopener noreferrer" className="product-link">
+            {selectedItem.description}
+          </a>
+        </div>
+      )}
 
       {/* Impact Section - Only for New Products */}
       {selectedItem.impact && (
@@ -337,8 +414,9 @@ const filteredNewProducts = newProducts.filter(product =>
         </div>
       )}
 
-      <div className="modal-size-container">
-        <label>Size:</label>
+      {selectedItem.type !== 'thrift' && (
+        <div className="modal-size-container">
+          <label>Size:</label>
         <div className="size-options">
           {['XS', 'S', 'M', 'L', 'XL', 'XXL'].map(size => (
             <button
@@ -349,8 +427,9 @@ const filteredNewProducts = newProducts.filter(product =>
               {size}
             </button>
           ))}
-        </div>
+       </div>
       </div>
+      )}
       <button className="add-to-cart-btn" onClick={handleAddToCart}>Add to Cart</button>
     </div>
   </div>
