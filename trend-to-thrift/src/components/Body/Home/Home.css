@@ -675,6 +675,8 @@
   }
 }
 
+
+
 .thrift-tags {
   display: flex;
   flex-wrap: wrap;
@@ -691,7 +693,7 @@
   font-weight: 500;
 }
 
-/* New Products Section */
+/* Thrift Store Section */
 .thrift-store-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -742,4 +744,36 @@
   font-size: 1.2rem;
   color: #666;
   font-style: italic;
+}
+
+/* Tablet: 2 columns */
+@media (max-width: 900px) {
+  .thrift-store-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .thrift-store-image-container {
+    height: 300px;
+  }
+}
+
+/* Mobile: 1 column */
+@media (max-width: 600px) {
+  .thrift-store-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .thrift-store-image-container {
+    height: 250px;
+  }
+
+  .thrift-store-name {
+    font-size: 0.85rem;
+  }
+
+  .thrift-store-colors {
+    font-size: 1rem;
+  }
 }
